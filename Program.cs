@@ -1,13 +1,21 @@
 using Microsoft.EntityFrameworkCore;
 using MinApi.Data;
 using MinApi.Models;
-using System.Linq;
+using Microsoft.AspNetCore;
+using MinApi.Repository.Pessoas;
+using Microsoft.AspNetCore.Mvc;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddScoped<MinApiDbContext>();
+builder.Services.AddScoped<PessoaRepository>();
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+
 builder.Services.AddDbContext<MinApiDbContext>(options => options.UseInMemoryDatabase("Pessoas"));
+
 
 await using var app = builder.Build();
 
@@ -19,16 +27,16 @@ if (app.Environment.IsDevelopment())
 
 app.UseSwagger();
 
-app.MapGet("/", () => "Hello World!");
-
-app.MapGet("/pessoas", async (MinApiDbContext dbContext) => await dbContext.Pessoas.ToListAsync());
-
-app.MapPost("/pessoas", async (Pessoa pessoa, MinApiDbContext dbContext) =>
+app.MapGet("/pessoas", async ([FromServices] PessoaRepository repository) =>
 {
-    dbContext.Pessoas.Add(pessoa);
-    await dbContext.SaveChangesAsync();
+    var result = await repository.ObterTodos();
+    return Results.Ok(result);
+});
 
-    return pessoa;
+app.MapPost("/pessoas", async ([FromServices] PessoaRepository repository, Pessoa pessoa) =>
+{
+    var result = await repository.Adicionar(pessoa);
+    return result;
 });
 
 app.UseSwaggerUI();
