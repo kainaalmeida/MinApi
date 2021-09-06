@@ -27,13 +27,13 @@ if (app.Environment.IsDevelopment())
 
 app.UseSwagger();
 
-app.MapGet("/pessoas", async ([FromServices] PessoaRepository repository) =>
+app.MapGet("/pessoas", async (PessoaRepository repository) =>
 {
     var result = await repository.ObterTodos();
     return Results.Ok(result);
 });
 
-app.MapPost("/pessoas", async ([FromServices] PessoaRepository repository, Pessoa pessoa) =>
+app.MapPost("/pessoas", async (PessoaRepository repository, Pessoa pessoa) =>
 {
     var result = await repository.Adicionar(pessoa);
     return result;
