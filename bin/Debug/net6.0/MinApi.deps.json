@@ -9,6 +9,7 @@
       "MinApi/1.0.0": {
         "dependencies": {
           "Microsoft.EntityFrameworkCore": "5.0.9",
+          "Microsoft.EntityFrameworkCore.Analyzers": "5.0.9",
           "Microsoft.EntityFrameworkCore.InMemory": "5.0.9",
           "Swashbuckle.AspNetCore": "6.2.1"
         },
