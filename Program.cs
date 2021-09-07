@@ -1,18 +1,13 @@
 using Microsoft.EntityFrameworkCore;
 using MinApi.Data;
-using MinApi.Models;
-using Microsoft.AspNetCore;
-using MinApi.Repository.Pessoas;
-using Microsoft.AspNetCore.Mvc;
+using MinApi.Extensions;
+using MinApi.Apis;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddEndpoints(typeof(PessoaApi));
 builder.Services.AddScoped<MinApiDbContext>();
-builder.Services.AddScoped<PessoaRepository>();
-
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-
 
 builder.Services.AddDbContext<MinApiDbContext>(options => options.UseInMemoryDatabase("Pessoas"));
 
@@ -25,19 +20,5 @@ if (app.Environment.IsDevelopment())
     app.UseDeveloperExceptionPage();
 }
 
-app.UseSwagger();
-
-app.MapGet("/pessoas", async (PessoaRepository repository) =>
-{
-    var result = await repository.ObterTodos();
-    return Results.Ok(result);
-});
-
-app.MapPost("/pessoas", async (PessoaRepository repository, Pessoa pessoa) =>
-{
-    var result = await repository.Adicionar(pessoa);
-    return result;
-});
-
-app.UseSwaggerUI();
+app.UseEndpoints();
 await app.RunAsync();

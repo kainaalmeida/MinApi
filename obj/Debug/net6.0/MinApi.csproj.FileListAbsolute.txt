@@ -59,7 +59,6 @@ D:\Cursos\MinimalApi\MinApi\obj\Debug\net6.0\MinApi.MvcApplicationPartsAssemblyI
 D:\Cursos\MinimalApi\MinApi\obj\Debug\net6.0\MinApi.StaticWebAssets.xml
 D:\Cursos\MinimalApi\MinApi\obj\Debug\net6.0\StaticWebAssets.build.json
 D:\Cursos\MinimalApi\MinApi\obj\Debug\net6.0\scopedcss\bundle\MinApi.styles.css
-D:\Cursos\MinimalApi\MinApi\obj\Debug\net6.0\MinApi.csproj.CopyComplete
 D:\Cursos\MinimalApi\MinApi\obj\Debug\net6.0\MinApi.dll
 D:\Cursos\MinimalApi\MinApi\obj\Debug\net6.0\refint\MinApi.dll
 D:\Cursos\MinimalApi\MinApi\obj\Debug\net6.0\MinApi.pdb
