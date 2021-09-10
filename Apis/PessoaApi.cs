@@ -1,6 +1,9 @@
+using Microsoft.AspNetCore.Authorization;
 using MinApi.EndpointDefinitions;
-using MinApi.Models;
+using MinApi.Models.Pessoa;
+using MinApi.Models.Pessoa.InputModel;
 using MinApi.Repository.Pessoas;
+using MinApi.Services;
 
 namespace MinApi.Apis
 {
@@ -8,7 +11,7 @@ namespace MinApi.Apis
     {
         public void DefineEndpoints(WebApplication app)
         {
-            app.MapGet("/pessoas", async (PessoaRepository repository) =>
+            app.MapGet("/pessoas", [Authorize(Roles = "manager")] async (PessoaRepository repository) =>
             {
                 var result = await repository.ObterTodos();
                 return Results.Ok(result);

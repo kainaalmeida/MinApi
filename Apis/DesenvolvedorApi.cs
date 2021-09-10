@@ -1,18 +1,18 @@
+using Microsoft.AspNetCore.Authorization;
 using MinApi.EndpointDefinitions;
 
 namespace MinApi.Apis
 {
-    public class SwaggerApi : IEndpointDefinitions
+    public class DesenvolvedorApi : IEndpointDefinitions
     {
         public void DefineEndpoints(WebApplication app)
         {
-            app.UseSwagger();
-            app.UseSwaggerUI();
+            app.MapGet("/dev", (Func<string>)([Authorize(Roles = "developer")]() => "Developer"));
         }
 
         public void DefineServices(IServiceCollection services)
         {
-            services.AddSwaggerGen();
+
         }
     }
 }
