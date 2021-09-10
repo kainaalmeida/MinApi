@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using MinApi.Models;
+using MinApi.Models.Pessoa;
 
 namespace MinApi.Data
 {

@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using MinApi.Data;
-using MinApi.Models;
+using MinApi.Models.Pessoa;
 
 namespace MinApi.Repository.Pessoas
 {
@@ -23,6 +23,12 @@ namespace MinApi.Repository.Pessoas
         {
             var pessoas = await _dbContext.Pessoas.ToListAsync();
             return pessoas;
+        }
+
+        public async Task<Pessoa> Obter(string email, string senha)
+        {
+            var pessoa = await _dbContext.Pessoas.FirstOrDefaultAsync(x => x.Email.ToUpper() == email.ToUpper() && x.Senha == senha);
+            return pessoa;
         }
 
         public void Dispose()
