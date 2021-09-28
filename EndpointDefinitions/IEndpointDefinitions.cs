@@ -1,3 +1,6 @@
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.DependencyInjection;
+
 namespace MinApi.EndpointDefinitions
 {
     public interface IEndpointDefinitions

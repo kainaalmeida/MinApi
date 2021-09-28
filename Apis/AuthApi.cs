@@ -1,4 +1,8 @@
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using MinApi.EndpointDefinitions;
 using MinApi.Models.Pessoa.InputModel;
 using MinApi.Repository.Pessoas;
